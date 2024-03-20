@@ -13,8 +13,6 @@ public class Jugador_Movimiento : MonoBehaviour
     SpriteRenderer sR;
     Animator animator;
 
-    private bool mirandoDerecha = true;
-
     private void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
