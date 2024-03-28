@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Jugador
+  - Suelo_Pasto
   layers:
   - Default
   - TransparentFX
