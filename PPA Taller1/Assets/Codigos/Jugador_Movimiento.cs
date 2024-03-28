@@ -8,7 +8,7 @@ public class Jugador_Movimiento : MonoBehaviour
 
     [SerializeField] public float velocidadSalto = 0f;
 
-
+    private Manejador_Juego manejador_Juego;
     Rigidbody2D rb2D;
     SpriteRenderer sR;
     Animator animator;
@@ -18,6 +18,7 @@ public class Jugador_Movimiento : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         sR = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        manejador_Juego = FindObjectOfType<Manejador_Juego>();
     }
 
     private void FixedUpdate()
@@ -32,6 +33,7 @@ public class Jugador_Movimiento : MonoBehaviour
         {
             animator.SetBool("esCayendo", false);
         }
+
         //Esta corriendo hacia la derecha
         if (Input.GetKey("d") || Input.GetKey("right"))
         {
@@ -58,6 +60,17 @@ public class Jugador_Movimiento : MonoBehaviour
             rb2D.velocity = new Vector2(rb2D.velocity.y, velocidadSalto);
             animator.SetBool("esCorriendo", true);
         }
-    
+
+        if (manejador_Juego.ObtenerVidas() < 2)
+        {
+            animator.SetBool("esHerido", true);
+        }
+        else
+        {
+            animator.SetBool("esHerido", false);
+        }
+        
+
+
     }
 }

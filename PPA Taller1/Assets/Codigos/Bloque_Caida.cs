@@ -13,6 +13,8 @@ public class Bloque_Caida : MonoBehaviour
     private Vector3 posicionInicial;
     private bool activado = false;
 
+    public Manejador_Juego manejador_Juego;
+
     void Start()
     {
         posicionInicial = transform.position;
@@ -27,12 +29,14 @@ public class Bloque_Caida : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Jugador"))
                 {
+                    Debug.Log("Esta por debajo.");
                     activado = true;
                 }
             }
         }
         else
         {
+            Debug.Log("Estoy cayendo.");
             // Mover el bloque hacia abajo
             transform.Translate(Vector3.down * velocidadCaida * Time.deltaTime);
 
@@ -50,6 +54,14 @@ public class Bloque_Caida : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Jugador"))
+        {
+            manejador_Juego.PerderVida();
         }
     }
 }
